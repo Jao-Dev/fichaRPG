@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -40,6 +41,10 @@ public class Character {
     @Enumerated(EnumType.STRING)
     private CharacterClassesEnum classe;
 
+    @Column(name = "raca", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CharacterRaces raca;
+
     @Column(name = "pvMaximo")
     private Long pvMaximo;
 
@@ -54,4 +59,13 @@ public class Character {
 
     @Column(name = "destreza")
     private Long destreza;
+
+    @Column(name = "constituicao")
+    private Long constituicao;
+    
+    @Column(name = "carisma")
+    private Long carisma;
+
+    @Column(name = "sabedoria")
+    private Long sabedoria;
 }

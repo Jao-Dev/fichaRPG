@@ -13,4 +13,7 @@ public class CharacterDTO {
     private Long forca;
     private Long inteligencia;
     private Long destreza;
+    private Long constituicao;
+    private Long carisma;
+    private Long sabedoria;
 }   

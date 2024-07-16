@@ -1,0 +1,7 @@
+-> criar os atributos: carisma, sabedoria e constituição
+-> colocar o Spring Security (excluir vai ser só pra adm)
+-> fazer o dado (d20) pra ficha
+-> 24 pontos, +3 pontos pra atributo bônus
+-> fazer as raças: humano, anão, elfo, semi-humano
+
+caçador, guerreiro, mago, ladino, monge
