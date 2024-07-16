@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <title>Projeto SpringWeb</title>
+    <title>Ficha RPG</title>
     <meta name="author" content="JãoDev"/>
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/e3e9eb0dd2.js" crossorigin="anonymous"></script>
@@ -12,27 +12,6 @@
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
-    <header th:fragment="cabecalho">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" th:href="@{/}">
-                <img src="static/img/Logo_jaodev.png" alt="Logo JãoDev">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="navMobile" class="collapse navbar-collapse justify-content-end">
-                <div class="navbar-nav">
-                    <a class="btn-nav nav-item nav-link"><i class="fas fa-home"></i> Home</a>
-                    <a class="btn-nav nav-item nav-link" th:href="@{cadastrarAluno}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a>
-                    <a class="btn-nav nav-item nav-link"><i class="fas fa-search"></i> Pesquisar Aluno</a>
-                    <a class="btn-nav nav-item nav-link btn btn-danger"><i class="fas fa-times"></i> Sair</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- FOOTER -->
     
     <footer th:fragment="rodape">
         <div class="rodape">
