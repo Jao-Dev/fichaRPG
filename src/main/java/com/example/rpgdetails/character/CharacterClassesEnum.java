@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public enum CharacterClassesEnum {
 
     //24 pontos, +3 pontos pra atributo bônus
+    //os 8 pontos de constituição, inteligencia não somam na vida e na mana
     //vida escala com constituição
     //mana escala com inteligencia*3
 
