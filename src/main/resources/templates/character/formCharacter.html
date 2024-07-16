@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Criar personagem</title>
+    <meta name="author" content="JãoDev"/>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://kit.fontawesome.com/e3e9eb0dd2.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .navbar-brand img {
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+
+    <div class="container" style="margin-top: 50px;">
+        <h4>Criar personagem</h4>
+        <br>
+        <form method="post" action="/criarPersonagem" th:object="${character}">
+
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 form-group offset-md-4">
+                    <label>Nome do personagem:</label>
+                    <input class="form-control" placeholder="Ex: Drichye Barne" th:field="*{nome}">
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-5 form-group offset-md-4">
+                    <label>Selecione a classe:</label>
+                    <select class="form-control" th:field="*{classe}">
+                        <option th:each="classe : ${T(com.example.rpgdetails.character.CharacterClassesEnum).values()}"
+                                th:value="${classe}" th:text="${classe.name()}"></option>
+                    </select>
+                </div>
+            </div>               
+
+            <div class="row">
+                <div class="col-md-5 offset-md-4">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 70px;">
+                        <button type="submit" class="btn btn-success">SALVAR</button>
+                        <a class="btn btn-danger ml-2" href="/voltar">VOLTAR</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="static/js/main.js"></script>
+    <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

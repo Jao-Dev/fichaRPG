@@ -4,8 +4,12 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,19 +23,22 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "character")
+@Table(name = "character_details")
 public class Character {
     
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
+    @NotBlank(message = "O campo NOME deve ser preenchido!")
+    @Size(min = 3, max = 255, message = "O nome deve ter no mínimo 3 caracteres!")
     private String nome;
 
-    @Column(name = "classe")
-    private CharacterClasses classe;
+    @Column(name = "classe", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CharacterClassesEnum classe;
 
     @Column(name = "pvMaximo")
     private Long pvMaximo;
@@ -39,11 +46,12 @@ public class Character {
     @Column(name = "pmMaximo")
     private Long pmMaximo;
 
+    @Column(name = "forca")
+    private Long forca;
 
-    private String character;
+    @Column(name = "inteligencia")
+    private Long inteligencia;
 
-    private Character(String character){
-        this.character = character;
-    }
-
+    @Column(name = "destreza")
+    private Long destreza;
 }

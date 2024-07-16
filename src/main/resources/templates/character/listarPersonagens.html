@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>+ Lista de Alunos</title>
+    <meta name="author" content="JãoDev"/>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://kit.fontawesome.com/e3e9eb0dd2.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .navbar-brand img {
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+    <div class="container" style="margin-top: 50px;">
+        <h3>Últimos alunos adicionados</h3>
+        <hr>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Classe</th>
+                    <th scope="col">PV Máximo</th>
+                    <th scope="col">PM Máximo</th>
+                    <th scope="col">Força</th>
+                    <th scope="col">Inteligência</th>
+                    <th scope="col">Destreza</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="character : ${listarPersonagens}">
+                    <td th:text="${character.nome}"></td>
+                    <td th:text="${character.classe.name()}"></td>
+                    <td th:text="${character.classe.pvMaximo}"></td>
+                    <td th:text="${character.classe.pmMaximo}"></td>
+                    <td th:text="${character.classe.forca}"></td>
+                    <td th:text="${character.classe.inteligencia}"></td>
+                    <td th:text="${character.classe.destreza}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
