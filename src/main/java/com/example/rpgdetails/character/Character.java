@@ -2,6 +2,9 @@ package com.example.rpgdetails.character;
 
 import java.util.UUID;
 
+import com.example.rpgdetails.enums.CharacterClassesEnum;
+import com.example.rpgdetails.enums.CharacterRaces;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -68,4 +71,21 @@ public class Character {
 
     @Column(name = "sabedoria")
     private Long sabedoria;
+
+    public Character(CharacterRequestPayload data){
+        this.nome = data.nome();
+        this.classe = data.classe();
+        this.raca = data.raca();
+    }
+    
+    public Character(AtributesRequestPayload atributesData){
+        this.pvMaximo = atributesData.pvMaximo();
+        this.pmMaximo = atributesData.pmMaximo();
+        this.forca = atributesData.forca();
+        this.inteligencia = atributesData.inteligencia();
+        this.destreza = atributesData.destreza();
+        this.constituicao = atributesData.constituicao();
+        this.carisma = atributesData.carisma();
+        this.sabedoria = atributesData.sabedoria();
+    }
 }

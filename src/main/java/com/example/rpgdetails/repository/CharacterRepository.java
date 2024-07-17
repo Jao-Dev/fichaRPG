@@ -1,12 +1,15 @@
-package com.example.rpgdetails.character;
+package com.example.rpgdetails.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.rpgdetails.character.Character;
+
 
 public interface CharacterRepository extends JpaRepository<Character, UUID>{
 
-    Character findByNome(String nome);
+    Optional<Character> findByNome(String nome);
     
 }

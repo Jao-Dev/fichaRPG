@@ -1,4 +1,4 @@
-package com.example.rpgdetails.character;
+package com.example.rpgdetails.enums;
 
 public enum CharacterRaces {
    HUMANO, ANAO, ELFO, SEMIHUMANO
