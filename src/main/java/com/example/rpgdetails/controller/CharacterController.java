@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.rpgdetails.character.AtributesRequestPayload;
 import com.example.rpgdetails.character.Character;
@@ -49,7 +51,7 @@ public class CharacterController {
         return character.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
     
-    @PutMapping("/atualizarPersonagem")
+    @PutMapping("/atualizarPersonagem/{id}")
     public ResponseEntity<Character> atualizarPersonagem(@PathVariable UUID id, @RequestBody AtributesRequestPayload payload){
         Optional<Character> character = this.repository.findById(id);
         
@@ -78,9 +80,18 @@ public class CharacterController {
         return ResponseEntity.ok(characterDataList);
     }
 
-    @DeleteMapping("/{id}")
-    public void excluirPersonagem(@PathVariable UUID id){
+    @DeleteMapping("excluir/{id}")
+    public RedirectView excluir(@PathVariable UUID id){
         repository.deleteById(id);
+        return new RedirectView("/listaDePersonagens", true);
+    }
+
+    @GetMapping("/listaDePersonagens")
+    public ModelAndView listaPersonagens(Character character){
+        ModelAndView mv= new ModelAndView();
+        mv.setViewName("Character/characterList");
+        mv.addObject("characterList", repository.findAll());
+        return mv;
     }
     
 }

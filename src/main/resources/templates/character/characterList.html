@@ -4,45 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <title>+ Lista de Alunos</title>
+    <title>Gerenciamento de personagens</title>
     <meta name="author" content="JãoDev"/>
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/e3e9eb0dd2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        .navbar-brand img {
-            max-width: 150px;
-            height: auto;
-        }
-    </style>
 </head>
-<body>
-    <div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+<body
 
     <div class="container" style="margin-top: 50px;">
-        <h3>Últimos alunos adicionados</h3>
+        <h3>Lista de personagens</h3>
         <hr>
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Classe</th>
-                    <th scope="col">PV Máximo</th>
-                    <th scope="col">PM Máximo</th>
-                    <th scope="col">Força</th>
-                    <th scope="col">Inteligência</th>
-                    <th scope="col">Destreza</th>
+                    <th scope="col">Raça</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="character : ${listarPersonagens}">
+                <tr th:each="character : ${characterList}">
+                    <td th:text="${character.id}"></td>
                     <td th:text="${character.nome}"></td>
                     <td th:text="${character.classe.name()}"></td>
-                    <td th:text="${character.classe.pvMaximo}"></td>
-                    <td th:text="${character.classe.pmMaximo}"></td>
-                    <td th:text="${character.classe.forca}"></td>
-                    <td th:text="${character.classe.inteligencia}"></td>
-                    <td th:text="${character.classe.destreza}"></td>
+                    <td th:text="${character.raca.name()}"></td>
+
+                    <td>
+                        <form th:action="@{/atualizarPersonagem/{id}(id=${character.id})}" method="post">
+                            <input type="hidden" name="_method" value="put"/>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                        </form>
+                        
+                        <form th:action="@{/excluir/{id}(id=${character.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-times"></i> Excluir
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>
