@@ -14,4 +14,19 @@ public class HomeController {
         return mv;
     } 
 
+    @GetMapping("/characterCreatehtml")
+    public ModelAndView characterCreatehtml(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("character/characterCreate");
+        return mv;
+    }
+    
+
+    @GetMapping("/characterFindhtml")
+    public ModelAndView characterFindhtml(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("character/characterFind");
+        return mv;
+    }
+
 }

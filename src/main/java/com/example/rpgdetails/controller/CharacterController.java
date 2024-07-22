@@ -44,14 +44,14 @@ public class CharacterController {
         return ResponseEntity.ok(new CharacterCreateResponse(newCharacter.getId()));
     }   
 
-    @GetMapping("/{nome}")
+    @GetMapping("/p/{nome}")
     public ResponseEntity<Character> encontrarPersonagem(@PathVariable String nome){
         Optional<Character> character = this.repository.findByNome(nome);
-
+        
         return character.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
     
-    @PutMapping("/atualizarPersonagem/{id}")
+    @PutMapping("/alterar/{id}")
     public ResponseEntity<Character> atualizarPersonagem(@PathVariable UUID id, @RequestBody AtributesRequestPayload payload){
         Optional<Character> character = this.repository.findById(id);
         
@@ -80,7 +80,7 @@ public class CharacterController {
         return ResponseEntity.ok(characterDataList);
     }
 
-    @DeleteMapping("excluir/{id}")
+    @GetMapping("excluir/{id}")
     public RedirectView excluir(@PathVariable UUID id){
         repository.deleteById(id);
         return new RedirectView("/listaDePersonagens", true);
@@ -88,8 +88,8 @@ public class CharacterController {
 
     @GetMapping("/listaDePersonagens")
     public ModelAndView listaPersonagens(Character character){
-        ModelAndView mv= new ModelAndView();
-        mv.setViewName("Character/characterList");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("character/characterList");
         mv.addObject("characterList", repository.findAll());
         return mv;
     }
